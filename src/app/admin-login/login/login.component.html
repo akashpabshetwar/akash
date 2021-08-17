@@ -1,0 +1,71 @@
+<section>
+    <body class="hold-transition login-page">
+        <div class="login-box">
+          <div class="login-logo">
+            <b>Admin</b>
+          </div>
+          <!-- /.login-logo -->
+          <div class="card">
+            <div class="card-body login-card-body">
+                <h3  class="login-box-msg border-logo removeBottomPadding"><b>Log In</b></h3>
+        
+              <form [formGroup]="loginForm">
+                <div class="input-group mb-2">
+                  <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isValidInput('email')"
+                    class="spanErrorText">
+                    <div *ngIf="loginForm.controls['email'].errors.required">
+                    Email is required.
+                    </div>
+                    <div *ngIf="loginForm.controls['email'].errors.pattern">
+                    Must be a valid email format.
+                    </div>
+                </div>
+                <div class="input-group mb-2">
+                  <input type="password" class="form-control" formControlName ="password" placeholder="Password">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isValidInput('password')"
+                class="spanErrorText">
+                <div *ngIf="loginForm.controls['password'].errors.required">
+                  Password is required.
+                </div>
+              </div>
+                <div class="row mt-3">
+                  <div class="col-12">
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block" (click)="login()">Log In</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+              <!-- /.social-auth-links -->
+              <div class="row mt-4">
+                  <div class="col-6 text-center">
+                    
+                        <a  [routerLink]="['/main/forgot-password']" routerLinkActive="router-link-active"  class="text-center">Forgot Password?</a>
+                   
+                  </div>
+                  <div class="col-6 text-center">
+                    
+                    <a  [routerLink]="['/main/regsiter']" routerLinkActive="router-link-active" class="text-center">Register</a>
+               
+              </div>
+              </div>
+            
+            </div>
+            <!-- /.login-card-body -->
+          </div>
+        </div>
+        <!-- /.login-box -->
+        </body>
+</section>

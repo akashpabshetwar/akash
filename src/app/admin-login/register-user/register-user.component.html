@@ -1,0 +1,94 @@
+<section>
+    <body class="hold-transition register-page">
+        <div class="register-box">
+          <div class="register-logo">
+            <b>Admin</b>
+          </div>
+        
+          <div class="card">
+            <div class="card-body register-card-body">
+              <h3  class="login-box-msg border-logo removeBottomPadding"><b>Registration</b></h3>
+        
+              <form [formGroup]="registrationForm">
+                <div class="input-group mb-2">
+                  <input type="text" formControlName="fullName" class="form-control" placeholder="Full Name">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isValidInput('fullName')"
+                    class="spanErrorText">
+                    <div *ngIf="registrationForm.controls['fullName'].errors.required">
+                    Full Name is required.
+                    </div>
+                    <div *ngIf="registrationForm.controls['fullName'].errors.pattern">
+                    Must be a valid Full Name format.
+                    </div>
+                </div>
+                <div class="input-group mb-2">
+                  <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-envelope"></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isValidInput('email')"
+                    class="spanErrorText">
+                    <div *ngIf="registrationForm.controls['email'].errors.required">
+                    Email is required.
+                    </div>
+                    <div *ngIf="registrationForm.controls['email'].errors.pattern">
+                    Must be a valid email format.
+                    </div>
+                </div>
+                <div class="input-group mb-2">
+                  <input type="password" formControlName="password" class="form-control" placeholder="Password">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="isValidInput('password')"
+                    class="spanErrorText">
+                    <div *ngIf="registrationForm.controls['password'].errors.required">
+                        Password is required.
+                    </div>
+                    <div *ngIf="registrationForm.controls['password'].errors.pattern">
+                    Must be a valid Password format.
+                    </div>
+                </div>
+                <div class="input-group mb-2">
+                  <input type="password" formControlName="confirmPassword" (focusout)="checkPassword()" class="form-control" placeholder="Confirm password">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="registrationForm.controls.confirmPassword.errors &&  registrationForm.controls.confirmPassword.touched && !mismatchMessage && !errorMessage">
+                    <span class='spanErrorText' >Confirm Password is required</span>
+                    <br>
+                </div>
+                <div *ngIf="(mismatchMessage || errorMessage) && (!(registrationForm.get('password').value === registrationForm.get('confirmPassword').value))">
+                    <span class='spanErrorText' >Password and Confirm Password needs to be same!</span>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-12">
+                    <button type="submit" [disabled]="!registrationForm.valid  ||
+                    (!(registrationForm.get('password').value === registrationForm.get('confirmPassword').value))" class="btn btn-primary btn-block">Register</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+              <a [routerLink]="['/main/login']" routerLinkActive="router-link-active" class="text-center  mb-2">Login</a>
+            </div>
+            <!-- /.form-box -->
+          </div><!-- /.card -->
+        </div>
+        <!-- /.register-box -->
+        </body>
+</section>
